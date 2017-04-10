@@ -1,0 +1,63 @@
+syntax="proto3";
+
+package message;
+
+import "account.proto";
+import "scalapb/scalapb.proto";
+
+option (scalapb.options) = {
+  flat_package: true
+  //single_file: true
+  //preamble: "sealed trait BaseMessage"
+  //preamble: "sealed trait CommonMessage"
+};
+
+message AccountCreated {
+    option (scalapb.message).extends = "message.Event";
+    accounts.Account act = 800;
+    string test = 801;
+}
+
+message AccountServable {
+    option (scalapb.message).extends = "message.Event";
+    string test = 805;
+}
+
+message NameUpdated {
+    option (scalapb.message).extends = "message.Event";
+    string name = 900;
+    string test = 901;
+}
+
+message OwnerUpdated {
+    option (scalapb.message).extends = "message.Event";
+    string owner = 1000;
+    string test = 1001;
+}
+
+message MemberUpdated {
+    option (scalapb.message).extends = "message.Event";
+    repeated string members = 2000;
+    string test = 2001;
+}
+
+message IncreaseIncarnation {
+    option (scalapb.message).extends = "message.Event";
+    string test = 2002;
+}
+
+message AccountAlreadyPresent {
+    option (scalapb.message).extends = "message.Event";
+    string name = 3000;
+    string test = 3001;
+}
+
+message CanNotPerform {
+    option (scalapb.message).extends = "message.Event";
+    string reason = 4000;
+    string test = 4001;
+}
+
+//Does not affect state
+//case class AccountAlreadyPresent(name:String) extends Event
+//case class CanNotPerform(reason:String) extends Event

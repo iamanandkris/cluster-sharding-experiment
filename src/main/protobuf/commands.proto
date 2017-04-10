@@ -1,0 +1,48 @@
+syntax="proto3";
+
+package message;
+
+import "account.proto";
+import "scalapb/scalapb.proto";
+
+option (scalapb.options) = {
+  flat_package: true
+  //single_file: true
+  //preamble: "sealed trait BaseMessage"
+  //preamble: "sealed trait CommonMessage"
+};
+
+message Create{
+    option (scalapb.message).extends = "message.Command";
+    accounts.Account act = 200;
+    string accountId = 201;
+    string test = 202;
+}
+
+message UpdateName{
+    option (scalapb.message).extends = "message.Command";
+    string name = 300;
+    string accountId = 301;
+    string test = 302;
+}
+
+message UpdateOwner{
+    option (scalapb.message).extends = "message.Command";
+    string owner = 400;
+    string accountId = 401;
+    string test = 402;
+}
+
+message UpdateMember{
+    option (scalapb.message).extends = "message.Command";
+    repeated string members = 500;
+    string accountId = 501;
+    string test = 502;
+}
+
+
+
+//case class Create(act:Account, accountId:String) extends Command
+//case class UpdateName(name:String, accountId:String)  extends Command
+//case class UpdateOwner(owner:String, accountId:String)  extends Command
+//case class UpdateMember(members:List[String], accountId:String)  extends Command

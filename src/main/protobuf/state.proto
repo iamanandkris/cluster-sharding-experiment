@@ -1,0 +1,25 @@
+syntax="proto3";
+
+package message;
+
+import "scalapb/scalapb.proto";
+
+option (scalapb.options) = {
+  flat_package: true
+  //single_file: true
+  //preamble: "sealed trait BaseMessage"
+  //preamble: "sealed trait CommonMessage"
+};
+
+message Servable{
+    option (scalapb.message).extends = "message.EntityState";
+}
+
+message NonServable{
+    option (scalapb.message).extends = "message.EntityState";
+}
+
+
+//  trait EntityState
+//case object Servable extends EntityState
+//case object NonServable extends EntityState
